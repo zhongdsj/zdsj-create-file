@@ -1,0 +1,144 @@
+{
+  "name": "zdsj-create-file",
+  "displayName": "zdsj-create-file",
+  "description": "",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "zdsj-create-file",
+        "properties": {
+          "zdsj-create-file.showMessageOnFileCreated": {
+            "type": "boolean",
+            "default": false,
+            "description": "Show a message when a file is created"
+          },
+          "zdsj-create-file.defaultFileContent": {
+            "type": "object",
+            "default": {
+              "cpp": "",
+              "java": "",
+              "json": "",
+              "py": "",
+              "h": "",
+              "c": "",
+              "md": ""
+            },
+            "description": "Default content of the file"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "zdsj-create-file.java",
+        "title": "java"
+      },
+      {
+        "command": "zdsj-create-file.cpp",
+        "title": "c++"
+      },
+      {
+        "command": "zdsj-create-file.json",
+        "title": "json"
+      },
+      {
+        "command": "zdsj-create-file.py",
+        "title": "py"
+      },
+      {
+        "command": "zdsj-create-file.h",
+        "title": "h"
+      },
+      {
+        "command": "zdsj-create-file.c",
+        "title": "c"
+      },
+      {
+        "command": "zdsj-create-file.md",
+        "title": "md"
+      }
+    ],
+    "submenus": [
+      {
+        "id": "createFile",
+        "label": "ZDSJ创建文件"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "createFile",
+          "group": "navigation",
+          "when": "explorerResourceIsFolder"
+        }
+      ],
+      "createFile": [
+        {
+          "command": "zdsj-create-file.java",
+          "when": "explorerResourceIsFolder",
+          "group": "Java"
+        },
+        {
+          "command": "zdsj-create-file.cpp",
+          "when": "explorerResourceIsFolder",
+          "group": "C/Cpp"
+        },
+        {
+          "command": "zdsj-create-file.json",
+          "when": "explorerResourceIsFolder",
+          "group": "Other"
+        },
+        {
+          "command": "zdsj-create-file.py",
+          "when": "explorerResourceIsFolder",
+          "group": "Python"
+        },
+        {
+          "command": "zdsj-create-file.h",
+          "when": "explorerResourceIsFolder",
+          "group": "C/Cpp"
+        },
+        {
+          "command": "zdsj-create-file.c",
+          "when": "explorerResourceIsFolder",
+          "group": "C/Cpp"
+        },
+        {
+          "command": "zdsj-create-file.md",
+          "when": "explorerResourceIsFolder",
+          "group": "Other"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "typescript": "^5.7.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
